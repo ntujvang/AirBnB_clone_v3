@@ -99,7 +99,13 @@ class DBStorage:
         """
         method to count number of objects in storage
         """
+        if cls not in self.__models_available.keys():
+            return None
         if cls is None:
-            return len(self.all())
+            count = 0
+            for items in self.__models_available.values():
+                for i in self.__session.query(items).count():
+                    count += 1
+            return count
         else:
             return self.__session.query(self.__models_available[cls]).count()
