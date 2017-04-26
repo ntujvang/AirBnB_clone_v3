@@ -104,3 +104,23 @@ class FileStorage:
     def close(self):
         """Close a session"""
         self.reload()
+
+    def get(self, cls, id):
+        """
+        method to retrieve one object
+        """
+        result = {}
+        if cls is None or id is None:
+            return None
+        for id in FileStorage.__objects.keys():
+            if id.__dict__['id'] == id:
+                return id
+
+    def count(self, cls=None):
+        """
+        method that counts how many objects are in storage
+        """
+        if cls is None:
+            return len(self.__objects)
+        else:
+            return len(self.all(cls))
