@@ -7,12 +7,18 @@ from flask import jsonify
 from models import storage
 
 
-@app_views.route('/status')
+@app_views.route('/status', strict_slashes=False)
 def status():
+    """
+    method that displays status
+    """
     return (jsonify({"status": "OK"}))
 
-@app_views.route('/stats')
+@app_views.route('/stats', strict_slashes=False)
 def stats():
+    """
+    method that displays object count
+    """
     models = {"amenities": "Amenity", "cities": "City", "places": "Place",
             "reviews": "Review", "states": "State", "users": "User"}
     temp_dict = {}

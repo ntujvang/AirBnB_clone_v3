@@ -9,7 +9,3 @@ from os import getenv
 from sqlalchemy import inspect
 
 
-if getenv("HBNB_TYPE_STORAGE") != "db":
-
-else:
-
