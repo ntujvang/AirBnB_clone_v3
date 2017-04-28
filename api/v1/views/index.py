@@ -22,6 +22,6 @@ def stats():
     models = {"amenities": "Amenity", "cities": "City", "places": "Place",
             "reviews": "Review", "states": "State", "users": "User"}
     temp_dict = {}
-    for key, value in mondels.items():
-        temp_dict[k] = storage.count(value)
+    for key in models.keys():
+        temp_dict[key] = storage.count(key)
     return jsonify(temp_dict)

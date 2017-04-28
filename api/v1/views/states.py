@@ -15,7 +15,7 @@ def all_states():
     """
     all_states = {}
     for state in storage.all("State").values():
-        all_states.append(state.to_json())
+        all_states = state.to_json()
     return jsonify(all_states)
 
 @app_views.route('/states/<state_id>', methods=['GET'],
@@ -51,13 +51,10 @@ def make_state():
     """
     method to create 1 state
     """
-    try:
-        r = request.get_json()
-    except:
-        r = None
+    r = request.get_json()
     if r is None:
         abort(400, "Not a JSON")
-    if "name" not in r.keys():
+    if "name" not in r:
         abort(400, "Missing name")
     new = State(r)
     storage.new(new)
