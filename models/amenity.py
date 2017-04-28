@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from sqlalchemy.orm import backref, relationship
 from models.base_model import BaseModel, Base, Table, Column, String
 from os import getenv
 """
