@@ -112,15 +112,19 @@ class FileStorage:
         result = {}
         if cls is None or id is None:
             return None
-        for id in FileStorage.__objects.keys():
-            if id.__dict__['id'] == id:
-                return id
+        for obj in FileStorage.__objects.values():
+            if obj.__dict__['id'] == id:
+                return obj
 
     def count(self, cls=None):
         """
         method that counts how many objects are in storage
         """
+        count = 0
         if cls is None:
-            return len(self.__objects)
+            for i in FileStorage.__objects:
+                count += 1
         else:
-            return len(self.all(cls))
+            for i in FileStorage.__objects.values():
+                count += 1
+        return count
